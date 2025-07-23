@@ -89,12 +89,6 @@ This repository contains code and resources for estimating the absolute distance
 └── README.md
 ```
 
-## Training (Optional)
-
-The full training notebook (`training.ipynb`) exceeds GitHub size limits. Access it here:
-
-[📥 Download Training Notebook](ADD_YOUR_GOOGLE_DRIVE_LINK_HERE)
-
 ## Results
 
 * **Best Model:** SVM (MAE ≈ 1.73m)
