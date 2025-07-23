@@ -1,70 +1,119 @@
-# 🧠 Object Distance Estimation from Monocular Images using Machine Learning
+# Object Distance Estimation from Monocular Images 🧠
 
-This project implements a Machine Learning-based approach to estimate the distance of an object from a single (monocular) image using object detection and regression models. The methodology leverages YOLOv5 for object detection and various ML/DL models to predict distance based on object bounding box dimensions and actual object sizes.
-
-## 📚 About the Project
-
-Traditional distance estimation systems rely on expensive hardware like LiDAR or stereo cameras. This research provides an affordable alternative by:
-- Using monocular RGB images
-- Extracting object features from YOLOv5 bounding boxes
-- Applying machine learning models for regression-based distance estimation
-
-## 🔍 Key Features
-- **YOLOv5** for real-time object detection
-- Feature vector extraction: `[1/Bw, 1/Bh, 1/Bd, Ch, Cw, Cb]`
-- Regression models used:
-  - Multiple Linear Regression
-  - Lasso & Ridge Regression
-  - K-Nearest Neighbors (KNN)
-  - Decision Tree & Random Forest
-  - Support Vector Machine (SVM)
-  - Simple Neural Network (SNN)
-  - Long Short-Term Memory (LSTM)
-
-## 🏆 Results Summary
-- **Best Performing Model:** SVM with MAE ≈ **1.73m**
-- **Other Notables:** Random Forest, KNN, and SNN performed decently.
-- **Poor Performers:** Linear, Ridge, Lasso (due to data non-linearity)
-- **Challenges:**
-  - Low dataset size (1797 entries)
-  - Poor performance on close-proximity objects
-  - Manual labeling introduced noise
-
-## 📁 Dataset
-- RGB images from [2]
-- Manual annotations using YOLOv5
-- Bounding box normalization to reduce resolution bias
-- Classes used: `car`, `person`, `bicycle`
-
-## 🔧 Tech Stack
-- Python
-- PyTorch
-- OpenCV
-- Scikit-learn
-- TensorFlow / Keras (for SNN, LSTM)
-- YOLOv5 (PyTorch version)
-
-## 📈 Performance Metrics
-- **Mean Absolute Error (MAE)** for validation and test sets
-- Visual analysis using error bins and distance comparisons in day/night conditions
-
-## 📷 Sample Use Cases
-- Autonomous vehicles
-- Surveillance and robotics
-- Navigation for visually impaired assistance systems
-
-## 📌 Future Work
-- Collect larger and more varied datasets
-- Incorporate depth maps and camera metadata (angle, height)
-- Explore hybrid ML + DL approaches with real-world deployment potential
-
-## 👨‍🎓 Author
-
-**Agam Sanjay Shah**  
-School of Electronic Engineering and Computer Science  
-Queen Mary University of London  
-📧 agammehta93@gmail.com
+Machine Learning-based project to estimate the distance of objects in single (monocular) images using YOLOv5 and various regression models.
 
 ---
 
+## 📋 Table of Contents
 
+1. [Project Overview](#project-overview)
+2. [Features](#features)
+3. [Requirements](#requirements)
+4. [Installation](#installation)
+5. [Usage](#usage)
+6. [Project Structure](#project-structure)
+7. [Training (Optional)](#training-optional)
+8. [Results](#results)
+9. [Future Work](#future-work)
+10. [Author](#author)
+
+---
+
+## Project Overview
+
+This repository contains code and resources for estimating the absolute distance of detected objects in images using a combination of YOLOv5 for object detection and several Machine Learning and Deep Learning regression models. The approach offers a low-cost alternative to LiDAR and stereo-camera systems.
+
+## Features
+
+* **Object Detection:** YOLOv5 (PyTorch)
+* **Feature Extraction:** Normalized bounding-box dimensions + actual object dimensions
+* **Regression Models:**
+
+  * Linear, Lasso, Ridge Regression
+  * K-Nearest Neighbors (KNN)
+  * Support Vector Machine (SVM)
+  * Decision Tree & Random Forest
+  * Simple Neural Network (SNN)
+  * LSTM-based RNN
+* **Evaluation Metric:** Mean Absolute Error (MAE)
+* Day/night performance testing
+
+## Requirements
+
+* NVIDIA GPU (CUDA-compatible)
+* Python 3.9.7
+* Anaconda or Miniconda
+
+## Installation
+
+1. **Clone the repository**
+
+   ```bash
+   git clone https://github.com/your-username/your-repo-name.git
+   cd your-repo-name
+   ```
+2. **Create and activate Conda environment**
+
+   ```bash
+   conda create -n object-dist python=3.9.7
+   conda activate object-dist
+   ```
+3. **Install dependencies**
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+## Usage
+
+1. Launch Jupyter Notebook:
+
+   ```bash
+   jupyter notebook
+   ```
+2. In the notebook interface, open `yolov5.ipynb`.
+3. Update the image filename in the cell that loads the YOLOv5 model.
+4. Run all cells (`Shift + Enter`) to detect objects and estimate distances.
+5. Processed images will be saved in the `output_images/` folder.
+
+> **Note:** Mismatched CUDA versions may cause issues.
+
+## Project Structure
+
+```
+├── requirements.txt
+├── yolov5.ipynb
+├── training.ipynb       # >50MB, not included
+├── test_images/         # Sample images for inference
+├── output_images/       # Generated outputs
+└── README.md
+```
+
+## Training (Optional)
+
+The full training notebook (`training.ipynb`) exceeds GitHub size limits. Access it here:
+
+[📥 Download Training Notebook](ADD_YOUR_GOOGLE_DRIVE_LINK_HERE)
+
+## Results
+
+* **Best Model:** SVM (MAE ≈ 1.73m)
+* **Random Forest:** MAE ≈ 1.96m
+* **KNN & SNN:** MAE ≈ 2.1m
+* Linear models (Linear/Lasso/Ridge) performed poorly on nonlinear data.
+
+## Future Work
+
+* Expand dataset size and variety
+* Add depth-map features and camera metadata (height, angle)
+* Explore hybrid ML + DL pipelines
+
+## Author
+
+**Agam Sanjay Shah**
+Queen Mary University of London
+agammehta93@gmail.com
+
+---
+
+*Thank you for checking out this project! Feel free to raise issues or submit pull requests.*
